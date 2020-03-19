@@ -56,7 +56,7 @@ public class CarDaoImpl implements CarDao {
             }
             logger.error(e.getMessage());
         }
-        logger.debug(String.format("The account which id is %s was deleted" + id));
+        logger.debug(String.format("The account which id is %s was deleted",id));
         return deletedCount == 1;
     }
 }

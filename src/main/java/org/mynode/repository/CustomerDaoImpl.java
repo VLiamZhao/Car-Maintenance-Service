@@ -14,11 +14,10 @@ public class CustomerDaoImpl implements CustomerDao {
     Logger logger = LoggerFactory.getLogger(getClass());
     @Override
     public Customer getCustomerEagerBy(long id) {
-        String hql = "FROM Customer as cu left join fetch cu.Car WHERE cu.id = :cuId";
+        String hql = "From Customer as cu left join fetch cu.cars as cas WHERE cu.id = :cuId";
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
             Query<Customer> query = session.createQuery(hql);
             query.setParameter("cuId", id);
-
             return query.uniqueResult();
         }
         catch (Exception e){
@@ -30,7 +29,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public List<Customer> getCustomers() {
-        String hql = "From Cusotmer";
+        String hql = "From Customer";
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query query = session.createQuery(hql);
             return (List<Customer>) query.list();

@@ -1,6 +1,7 @@
 package org.mynode.repository;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mynode.model.Car;
@@ -20,24 +21,47 @@ public class CustomerDaoTest {
 
     @Before
     public void init() {
-//        c1 = new Car("Toyota Camry");
-//        c2 = new Car("lexus E350");
-        cu = new Customer("Tony");
-        customerDao.save(cu);
-//        cu.addCar(c1);
-//        cu.addCar(c2);
-//        assert(0 != customerDao.save(cu).getId());
-//        assert(0 != carDao.save(c1).getId());
-//        assert(0 != carDao.save(c2).getId());
+        c1 = new Car("Toyota Camry");
+        c2 = new Car("lexus E200");
+        cu = new Customer("Liam");
+        cu.addCar(c1);
+        cu.addCar(c2);
+        cu = customerDao.save(cu);
+        c1 = carDao.save(c1);
+        c2 = carDao.save(c2);
+        assert(c1.getId() != 0);
+        assert (c2.getId() != 0);
+        assert (cu.getId() != 0);
     }
 
     @After
     public void tearDown() {
-//        assert(carDao.deleteById(c1.getId()));
-//        assert(carDao.deleteById(c2.getId()));
-//        assert(customerDao.deleteById(cu.getId()));
+        assert(carDao.deleteById(c1.getId()));
+        assert(carDao.deleteById(c2.getId()));
+        assert(customerDao.deleteById(cu.getId()));
     }
 
     @Test
-    public void getCustomerTest(){}
+    public void getCustomerEagerByTest(){
+        logger.debug("Test of getCustomerEagerBy will start...");
+        List<Car> cars = customerDao.getCustomerEagerBy(cu.getId()).getCars();
+        int expectedCount = 2;
+        Assert.assertEquals(expectedCount, cars.size());
+    }
+
+    @Test
+    public void getCustomersTest() {
+        logger.debug("Test of getCustomers will start...");
+        int expectedCount = 3; //2 records was already in the table.
+        List<Customer> customers = customerDao.getCustomers();
+        Assert.assertEquals(expectedCount, customers.size());
+    }
+
+    @Test
+    public void getCustomerByIdTest() {
+        logger.debug("Test of getCustomerById will start...");
+        Customer customer = customerDao.getCustomerById(cu.getId());
+        String cuName = customer.getName();
+        Assert.assertEquals("Liam", cuName);
+    }
 }
