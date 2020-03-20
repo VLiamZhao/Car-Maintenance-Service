@@ -20,6 +20,7 @@ public class CarDaoTest {
 
   @Before
   public void init() {
+    logger.debug("Test will start...");
     c1 = new Car("Toyota Camry");
     c2 = new Car("lexus E200");
     cu = new Customer("Liam");
