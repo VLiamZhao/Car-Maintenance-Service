@@ -32,13 +32,26 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public Car getCarById(long id) {
+        String hql = "FROM Car as ca where ca.id = :targetId";
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Car> query = session.createQuery(hql);
+            query.setParameter("targetId", id);
+            return query.uniqueResult();
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
         return null;
     }
 
-    @Override
-    public List<Car> getCarsByCustomer(Customer customer) {
-        return null;
-    }
+//    @Override
+//    public List<Car> getCarsByCustomer(Customer customer) {
+//        try {
+//            return customer.getCars();
+//        } catch (Exception e) {
+//            logger.error(e.getMessage());
+//        }
+//        return null;
+//    }
 
     @Override
     public boolean deleteById(long id) {
@@ -58,5 +71,18 @@ public class CarDaoImpl implements CarDao {
         }
         logger.debug(String.format("The account which id is %s was deleted",id));
         return deletedCount == 1;
+    }
+
+    @Override
+    public List<Car> getCars() {
+        String hql = "From Car";
+        try(Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query query = session.createQuery(hql);
+            return (List<Car>) query.list();
+        }
+        catch (Exception e){
+            logger.debug(e.getMessage());
+            return null;
+        }
     }
 }
