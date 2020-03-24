@@ -8,13 +8,16 @@ import org.mynode.model.Car;
 import org.mynode.model.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDaoTest {
-    CarDao carDao = new CarDaoImpl();
-    CustomerDao customerDao = new CustomerDaoImpl();
+    @Autowired
+    CarDao carDao;
+    @Autowired
+    CustomerDao customerDao;
     Logger logger = LoggerFactory.getLogger(getClass());
     Car c1, c2;
     Customer cu;
