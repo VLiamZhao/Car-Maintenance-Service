@@ -16,4 +16,15 @@ CREATE TABLE car (
                         primary key (id)
 );
 
+CREATE TABLE maintenance (
+                        id               BIGSERIAL NOT NULL,
+                        component        VARCHAR(30) not null,
+                        cost             NUMERIC(10,2),
+                        date             date default CURRENT_DATE,
+                        description      VARCHAR(150),
+                        car_id           BIGINT,
+                        primary key (id)
+);
+
 ALTER TABLE car ADD CONSTRAINT car_customer_fk FOREIGN KEY ( owner_id ) REFERENCES customer ( id );
+ALTER TABLE maintenance ADD CONSTRAINT maintenance_car_fk FOREIGN KEY ( car_id ) REFERENCES car ( id );

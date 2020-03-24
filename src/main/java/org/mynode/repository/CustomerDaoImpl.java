@@ -7,9 +7,10 @@ import org.mynode.model.Customer;
 import org.mynode.util.HibernateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public class CustomerDaoImpl implements CustomerDao {
     Logger logger = LoggerFactory.getLogger(getClass());
     @Override
