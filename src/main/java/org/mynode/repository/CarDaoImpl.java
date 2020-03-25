@@ -44,15 +44,15 @@ public class CarDaoImpl implements CarDao {
         return null;
     }
 
-//    @Override
-//    public List<Car> getCarsByCustomer(Customer customer) {
-//        try {
-//            return customer.getCars();
-//        } catch (Exception e) {
-//            logger.error(e.getMessage());
-//        }
-//        return null;
-//    }
+    @Override
+    public List<Car> getCarsByCustomer(Customer customer) {
+        try {
+            return customer.getCars();
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return null;
+    }
 
     @Override
     public boolean deleteById(long id) {

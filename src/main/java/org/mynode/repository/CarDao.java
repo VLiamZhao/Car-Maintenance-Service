@@ -8,7 +8,7 @@ import java.util.List;
 public interface CarDao {
     Car save(Car car);
     Car getCarById(long id);
-//    List<Car> getCarsByCustomer(Customer customer);
+    List<Car> getCarsByCustomer(Customer customer);
     boolean deleteById(long id);
     List<Car> getCars();
 }
