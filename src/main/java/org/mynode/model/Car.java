@@ -1,6 +1,8 @@
 package org.mynode.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -46,6 +48,7 @@ public class Car {
     @Column(name = "regi_date")
     private LocalDate regi_date;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private Customer customer;
