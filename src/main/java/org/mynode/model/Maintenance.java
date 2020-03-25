@@ -7,7 +7,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "maintenance")
 public class Maintenance {
-    public Maintenance(long id, String component, BigDecimal cost, LocalDate date, String description, long car_id) {
+    public Maintenance(long id, String component, BigDecimal cost, LocalDate date, String description) {
         this.component = component;
         this.cost = cost;
         this.date = date;
@@ -17,6 +17,7 @@ public class Maintenance {
     public Maintenance(String component) {
         this.component = component;
     }
+    public Maintenance() {}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

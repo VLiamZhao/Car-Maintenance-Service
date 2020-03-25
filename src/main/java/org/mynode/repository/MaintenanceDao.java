@@ -1,6 +1,5 @@
 package org.mynode.repository;
 
-import org.mynode.model.Car;
 import org.mynode.model.Maintenance;
 
 import java.util.List;

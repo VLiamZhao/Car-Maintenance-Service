@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public class CarDaoImpl implements CarDao {
-    Logger logger = LoggerFactory.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
     @Override
     public Car save(Car car) {
         Transaction transaction = null;

@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 public class MaintenanceDaoImpl implements MaintenanceDao {
-    Logger logger = LoggerFactory.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
     @Override
     public Maintenance save(Maintenance maintenance) {
         Transaction transaction = null;
@@ -56,7 +56,7 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
         String hql = "From Maintenance";
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query query = session.createQuery(hql);
-            return (List<Maintenance>) query.list();
+            return (List<Maintenance>)query.list();
         }
         catch (Exception e){
             logger.debug(e.getMessage());
@@ -76,4 +76,10 @@ public class MaintenanceDaoImpl implements MaintenanceDao {
         }
         return null;
     }
+
+//    public static void main(String[] args) {
+//        MaintenanceDao maintenanceDao = new MaintenanceDaoImpl();
+//        System.out.println(maintenanceDao.getMaintenanceOrders().size());
+//
+//    }
 }

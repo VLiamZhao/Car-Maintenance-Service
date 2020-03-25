@@ -30,7 +30,7 @@ public class Customer {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Car> cars;
 
     public long getId() {

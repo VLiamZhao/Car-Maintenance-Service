@@ -25,7 +25,7 @@ public class CarDaoTest {
   CustomerDao customerDao;
   @Autowired
   MaintenanceDao maintenanceDao;
-  Logger logger = LoggerFactory.getLogger(getClass());
+  private Logger logger = LoggerFactory.getLogger(getClass());
   Car c1, c2;
   Customer cu;
   Maintenance m1, m2;

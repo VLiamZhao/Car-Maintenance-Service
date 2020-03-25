@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
-    Logger logger = LoggerFactory.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
     @Override
     public Customer getCustomerEagerBy(long id) {
         String hql = "From Customer as cu left join fetch cu.cars as cas WHERE cu.id = :cuId";
@@ -91,4 +91,9 @@ public class CustomerDaoImpl implements CustomerDao {
         logger.debug(String.format("The customer which id is %s was deleted", String.valueOf(id)));
         return deletedCount == 1;
     }
+//    public static void main(String[] args) {
+//        CustomerDao customerDao = new CustomerDaoImpl();
+//        System.out.println(customerDao.getCustomers().size());
+//
+//    }
 }
