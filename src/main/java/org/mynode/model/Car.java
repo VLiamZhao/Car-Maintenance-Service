@@ -104,17 +104,17 @@ public class Car {
 
         return maintenances;
     }
-    public void setMaintenances(List<Maintenance> maintenances) {
-        /* Create link between parent and children objects automatically */
-        for (Maintenance m : maintenances) {
-            if (m.getCar() == null) {m.setCar(this);}
-        }
-
-        this.maintenances = maintenances;
-    }
-
-    public void addMaintenance (Maintenance maintenance) {
-        maintenance.setCar(this);
-        this.maintenances.add(maintenance);
-    }
+//    public void setMaintenances(List<Maintenance> maintenances) {
+//        /* Create link between parent and children objects automatically */
+//        for (Maintenance m : maintenances) {
+//            if (m.getCar() == null) {m.setCar(this);}
+//        }
+//
+//        this.maintenances = maintenances;
+//    }
+//
+//    public void addMaintenance (Maintenance maintenance) {
+//        maintenance.setCar(this);
+//        this.maintenances.add(maintenance);
+//    }
 }

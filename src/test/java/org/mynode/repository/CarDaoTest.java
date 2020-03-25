@@ -38,8 +38,8 @@ public class CarDaoTest {
     cu = new Customer("Stephanie");
     m1 = new Maintenance("left front-door");
     m2 = new Maintenance("gear");
-    cu.addCar(c1);
-    cu.addCar(c2);
+    c1.setCustomer(cu);
+    c2.setCustomer(cu);
     m1.setCar(c1);
     m2.setCar(c2);
     cu = customerDao.save(cu);

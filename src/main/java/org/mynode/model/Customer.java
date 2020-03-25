@@ -68,19 +68,19 @@ public class Customer {
 
         return cars;
     }
-    public void setCars(List<Car> cars) {
-        /* Create link between parent and children objects automatically */
-        for (Car c : cars) {
-            if (c.getCustomer() == null) {c.setCustomer(this);}
-        }
-
-        this.cars = cars;
-    }
-
-    public void addCar(Car car) {
-        car.setCustomer(this);
-        this.cars.add(car);
-    }
+//    public void setCars(List<Car> cars) {
+//        /* Create link between parent and children objects automatically */
+//        for (Car c : cars) {
+//            if (c.getCustomer() == null) {c.setCustomer(this);}
+//        }
+//
+//        this.cars = cars;
+//    }
+//
+//    public void addCar(Car car) {
+//        car.setCustomer(this);
+//        this.cars.add(car);
+//    }
 
 
 }
