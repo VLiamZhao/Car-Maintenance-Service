@@ -62,11 +62,11 @@ public class CustomerController {
     }
 
     /**
-     * POST {prefix}/customer/delete/{id}
+     * Delete {prefix}/customer/{id}
      * @param id
      * @return
      */
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public String deleteCustomer(@PathVariable long id) {
         logger.debug("Customer Id: " + id);
         String msg = "The customer was deleted.";
