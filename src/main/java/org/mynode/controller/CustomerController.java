@@ -61,20 +61,20 @@ public class CustomerController {
         return customer;
     }
 
-//    /**
-//     * POST {prefix}/customer/delete/{id}
-//     * @param id
-//     * @return
-//     */
-//    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
-//    public String deleteDepartment(@PathVariable long id) {
-//        logger.debug("Customer Id: " + id);
-//        String msg = "The customer was deleted.";
-//        boolean isSuccess = customerService.deleteCustomerById(id);
-//        if (!isSuccess) msg = "The customer was not deleted.";
-//
-//        return msg;
-//    }
+    /**
+     * POST {prefix}/customer/delete/{id}
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public String deleteCustomer(@PathVariable long id) {
+        logger.debug("Customer Id: " + id);
+        String msg = "The customer was deleted.";
+        boolean isSuccess = customerService.deleteCustomerById(id);
+        if (!isSuccess) msg = "The customer was not deleted.";
+
+        return msg;
+    }
 
 
 }
