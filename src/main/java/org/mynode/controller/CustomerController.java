@@ -51,13 +51,13 @@ public class CustomerController {
     }
 
     /**
-     * GET {prefix}/customer/eager/{id}
-     * @param id
+     * GET {prefix}/customer/eager?id=inputId
+     * @param inputId
      * @return
      */
-    @RequestMapping(value = "/eager/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Customer getCustomerEagerBy(@PathVariable long id){
-        Customer customer = customerService.getCustomerEagerBy(id);
+    @RequestMapping(value = "/eager", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Customer getCustomerEagerBy(@RequestParam(name = "id") long inputId){
+        Customer customer = customerService.getCustomerEagerBy(inputId);
         return customer;
     }
 
