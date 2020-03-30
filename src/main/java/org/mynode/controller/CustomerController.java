@@ -60,21 +60,17 @@ public class CustomerController {
         Customer customer = customerService.getCustomerEagerBy(inputId);
         return customer;
     }
-
-    /**
-     * Delete {prefix}/customer/{id}
-     * @param id
-     * @return
-     */
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public String deleteCustomer(@PathVariable long id) {
-        logger.debug("Customer Id: " + id);
-        String msg = "The customer was deleted.";
-        boolean isSuccess = customerService.deleteCustomerById(id);
-        if (!isSuccess) msg = "The customer was not deleted.";
-
-        return msg;
-    }
+    
+//     /**
+//     * DELETE /customer/{id}
+//     *
+//     * @param id
+//     * @return
+//     */
+//     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
+//     public boolean deleteCustomerById(@PathVariable long id) {
+//         return customerService.deleteCustomerById(id);
+//     }
 
 
 }
