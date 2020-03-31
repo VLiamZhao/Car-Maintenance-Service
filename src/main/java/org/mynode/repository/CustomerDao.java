@@ -10,4 +10,5 @@ public interface CustomerDao {
     Customer getCustomerById(long id);
     Customer save(Customer customer);
     boolean deleteById(long id);
+//    boolean updateCustomer(Customer customer);
 }

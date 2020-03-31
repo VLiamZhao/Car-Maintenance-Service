@@ -91,6 +91,27 @@ public class CustomerDaoImpl implements CustomerDao {
         logger.debug(String.format("The customer which id is %s was deleted", String.valueOf(id)));
         return deletedCount == 1;
     }
+
+//    @Override
+//    public boolean updateCustomer(Customer customer) {
+//        String msg = String.format("The customer %s was updated.", customer.toString());
+//        Transaction transaction = null;
+//        boolean isSuccess = true;
+//
+//        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+//            transaction = session.beginTransaction();
+//            session.saveOrUpdate(customer);
+//            transaction.commit();
+//        }
+//        catch (Exception e) {
+//            isSuccess = false;
+//            msg = e.getMessage();
+//            if (transaction != null) transaction.rollback();
+//        }
+//
+//        logger.debug(msg);
+//        return isSuccess;
+//    }
 //    public static void main(String[] args) {
 //        CustomerDao customerDao = new CustomerDaoImpl();
 //        System.out.println(customerDao.getCustomers().size());

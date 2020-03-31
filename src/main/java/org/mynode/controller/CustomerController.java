@@ -7,8 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
-import java.awt.*;
 import java.util.List;
 
 @RestController
@@ -60,7 +58,7 @@ public class CustomerController {
         Customer customer = customerService.getCustomerEagerBy(inputId);
         return customer;
     }
-    
+
 //     /**
 //     * DELETE /customer/{id}
 //     *
@@ -72,5 +70,15 @@ public class CustomerController {
 //         return customerService.deleteCustomerById(id);
 //     }
 
-
+    /**
+     * PUT {prefix}/customer/{id}?name={name}
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.PATCH, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Customer updateCustomer(@PathVariable("id") long id, @RequestParam("name") String name) {
+        Customer c = customerService.getCustomerById(id);
+        c.setName(name);
+        return c;
+    }
 }
