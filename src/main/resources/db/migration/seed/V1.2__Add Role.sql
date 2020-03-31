@@ -10,12 +10,12 @@ CREATE TABLE role (
 ALTER TABLE role ADD CONSTRAINT role_pk PRIMARY KEY ( id );
 
 CREATE TABLE customer_role (
-                            user_id    INTEGER NOT NULL,
-                            role_id    INTEGER NOT NULL
+                            customer_id    BIGINT NOT NULL,
+                            role_id    BIGINT NOT NULL
 );
 
 ALTER TABLE customer_role
-    ADD CONSTRAINT customer_fk FOREIGN KEY ( user_id )
+    ADD CONSTRAINT customer_fk FOREIGN KEY ( customer_id )
         REFERENCES customer ( id );
 
 ALTER TABLE customer_role

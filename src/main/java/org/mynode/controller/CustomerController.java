@@ -59,16 +59,16 @@ public class CustomerController {
         return customer;
     }
 
-//     /**
-//     * DELETE /customer/{id}
-//     *
-//     * @param id
-//     * @return
-//     */
-//     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
-//     public boolean deleteCustomerById(@PathVariable long id) {
-//         return customerService.deleteCustomerById(id);
-//     }
+     /**
+     * DELETE /customer/{id}
+     *
+     * @param id
+     * @return
+     */
+     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
+     public boolean deleteCustomerById(@PathVariable(name = "id") long id) {
+         return customerService.deleteCustomerById(id);
+     }
 
     /**
      * PUT {prefix}/customer/{id}?name={name}

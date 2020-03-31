@@ -33,6 +33,13 @@ public class Customer {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Car> cars;
 
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinTable(name = "customer_role",
+            joinColumns = { @JoinColumn(name = "customer_id") },
+            inverseJoinColumns = { @JoinColumn(name = "role_id") }
+    )
+    private List<Role> roleList;
+
     public long getId() {
         return id;
     }
@@ -68,6 +75,8 @@ public class Customer {
 
         return cars;
     }
+
+
 //    public void setCars(List<Car> cars) {
 //        /* Create link between parent and children objects automatically */
 //        for (Car c : cars) {
@@ -83,4 +92,11 @@ public class Customer {
 //    }
 
 
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
 }
