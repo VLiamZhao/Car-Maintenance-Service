@@ -28,7 +28,7 @@ public class CustomerController {
 
     /**
      * POST {prefix}/customer/body
-     * @param customer
+     * @param
      * @return
      */
     @RequestMapping(value = "/body", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})

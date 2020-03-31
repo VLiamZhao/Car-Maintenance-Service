@@ -7,10 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,12 +30,32 @@ public class MaintenanceController {
 
     /**
      * POST {prefix}/maintenance/body
-     * @param maintenance
+     * @param
      * @return
      */
     @RequestMapping(value = "/body", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public Maintenance createMaintenance(@RequestBody Maintenance maintenance){
-        Maintenance ma = maintenanceService.save(maintenance);
-        return ma;
+        return maintenanceService.save(maintenance);
+    }
+
+    /**
+     * GET {prefix}/{id}
+     * @param inputId
+     * @return
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public Maintenance getMaintenanceById(@PathVariable(name = "id") long inputId){
+        Maintenance m1 = maintenanceService.getMaintenanceById(inputId);
+        return m1;
+    }
+
+    /**
+     * DELETE {prefix}/{id}
+     * @param inputId
+     * @return
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public boolean deleteMaintenanceById(@PathVariable(name = "id") long inputId){
+        return maintenanceService.deleteMaintenanceById(inputId);
     }
 }
