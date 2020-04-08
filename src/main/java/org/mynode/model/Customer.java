@@ -11,17 +11,28 @@ import java.util.List;
 public class Customer {
     public Customer() {
         cars = new ArrayList<>();
+        roleList = new ArrayList<>();
     }
 
     public Customer(String name) {
         this.name = name;
         cars = new ArrayList<>();
+        roleList = new ArrayList<>();
+    }
+
+    public Customer(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        cars = new ArrayList<>();
+        roleList = new ArrayList<>();
     }
 
     public Customer(String name, String description) {
         this.name = name;
         this.description = description;
         cars = new ArrayList<>();
+        roleList = new ArrayList<>();
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,8 +84,6 @@ public class Customer {
             joinColumns = { @JoinColumn(name = "customer_id") },
             inverseJoinColumns = { @JoinColumn(name = "role_id") }
     )
-
-
     private List<Role> roleList;
 
     public long getId() {

@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = {"/maintenance"})
 public class MaintenanceController {
-    Logger logger = LoggerFactory.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     MaintenanceService maintenanceService;
 

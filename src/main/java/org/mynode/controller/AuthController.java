@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = {"/auth"}, method = RequestMethod.POST)
 public class AuthController {
-    Logger logger = LoggerFactory.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     private CustomerService customerService;
     @Autowired

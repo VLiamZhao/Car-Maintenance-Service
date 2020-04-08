@@ -141,8 +141,7 @@ public class CustomerDaoImpl implements CustomerDao {
             query.setParameter("email", emailOrUsername.toLowerCase().trim());
             query.setParameter("password", password);
             return query.uniqueResult();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             throw new Exception("can't find user record or session");
         }
     }

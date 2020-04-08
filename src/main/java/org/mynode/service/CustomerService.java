@@ -34,12 +34,7 @@ public class CustomerService {
     }
 
 //    public boolean updateCustomer(Customer customer){return customerDao.updateCustomer(customer); }
-    public Customer getCustomerByCredentials(String email, String password)  {
-        try{
-            return customerDao.getCustomerByCredentials(email, password);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        return null;
+    public Customer getCustomerByCredentials(String email, String password) throws Exception {
+        return customerDao.getCustomerByCredentials(email, password);
     }
 }

@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = {"/car"})
 public class CarController {
-    Logger logger = LoggerFactory.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     CarService carService;
 

@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = {"/customer"})
 public class CustomerController {
-    Logger logger = LoggerFactory.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     CustomerService customerService;
     @Autowired
@@ -94,6 +94,7 @@ public class CustomerController {
         try {
             Customer c = customerService.getCustomerByCredentials(emailOrUsername, password);
             return jwtService.generateToken(c);
+
         }catch (Exception e){
             logger.error(e.getMessage());
         }
