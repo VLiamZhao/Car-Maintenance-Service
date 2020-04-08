@@ -133,12 +133,12 @@ public class CustomerDaoImpl implements CustomerDao {
 //    }
 
     @Override
-    public Customer getUserByCredentials(String email, String password) throws Exception {
+    public Customer getCustomerByCredentials(String emailOrUsername, String password) throws Exception {
         String hql = "FROM Customer as u where (lower(u.email) = :email or lower(u.name) =:email) and u.password = :password";
-        logger.debug(String.format("User email: %s, password: %s", email, password));
+        logger.debug(String.format("User email: %s, password: %s", emailOrUsername, password));
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<Customer> query = session.createQuery(hql);
-            query.setParameter("email", email.toLowerCase().trim());
+            query.setParameter("email", emailOrUsername.toLowerCase().trim());
             query.setParameter("password", password);
             return query.uniqueResult();
         }

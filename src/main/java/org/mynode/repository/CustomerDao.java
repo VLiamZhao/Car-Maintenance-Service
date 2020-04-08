@@ -12,5 +12,5 @@ public interface CustomerDao {
     Customer save(Customer customer);
     boolean deleteById(long id);
 //    boolean updateCustomer(Customer customer);
-    public Customer getUserByCredentials(String email, String password) throws Exception;
+    public Customer getCustomerByCredentials(String email, String password) throws Exception;
 }

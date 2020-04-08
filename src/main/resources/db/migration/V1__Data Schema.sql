@@ -1,6 +1,6 @@
 CREATE TABLE customer (
 
-                        id              SERIAL NOT NULL,
+                        id              BIGSERIAL NOT NULL,
                         name            VARCHAR(30) not null unique,
                         password        VARCHAR(64),
                         secret_key      varchar(512),

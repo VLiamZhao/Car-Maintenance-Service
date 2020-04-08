@@ -16,6 +16,7 @@ public class JWTServiceTest {
     @Autowired
     JWTService jwtService;
 
+    //passed
     @Test
     public void generateTokenTest(){
         Customer customer = new Customer();
@@ -26,7 +27,7 @@ public class JWTServiceTest {
         String[] arr = token.split("\\.");
         Assert.assertEquals(arr.length, 3);
     }
-
+    //passed
     @Test
     public void decodeTokenTest(){
         Customer customer = new Customer();

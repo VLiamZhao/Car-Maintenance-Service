@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
-import java.security.Signature;
 import java.util.Date;
 
 @Service

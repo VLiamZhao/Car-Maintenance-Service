@@ -88,4 +88,12 @@ public class CustomerDaoTest {
         String cuName = customer.getName();
         Assert.assertEquals("Stephanie", cuName);
     }
+
+    @Test
+    public void getCustomerByNameTest() {
+        logger.debug("Test of getCustomerByName will start...");
+        Customer customer = customerDao.getCustomerByName("Stephanie");
+        String cuName = customer.getName();
+        Assert.assertEquals("Stephanie", cuName);
+    }
 }
