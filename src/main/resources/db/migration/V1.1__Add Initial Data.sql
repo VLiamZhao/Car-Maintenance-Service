@@ -1,6 +1,6 @@
-insert into customer (name, description) values
-('John Smith', 'Uber driver'),
-('Liam Zhao', 'Student');
+insert into customer (name, password, email, description) values
+('John Smith', '25f9e794323b453885f5181f1b624d0b', 'js@gmail.com', 'Uber driver'),
+('Liam Zhao', '25f9e794323b453885f5181f1b624d0b', 'lz@gmail.com', 'Student');
 commit;
 
 insert into car (type, price, regi_date, owner_id) values

@@ -1,7 +1,10 @@
 CREATE TABLE customer (
 
-                        id                BIGSERIAL NOT NULL,
-                        name              VARCHAR(30) not null unique,
+                        id              SERIAL NOT NULL,
+                        name            VARCHAR(30) not null unique,
+                        password        VARCHAR(64),
+                        secret_key      varchar(512),
+                        email           VARCHAR(50) not null unique,
                         description       VARCHAR(150),
                         primary key (id)
 );

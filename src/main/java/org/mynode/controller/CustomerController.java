@@ -2,6 +2,7 @@ package org.mynode.controller;
 
 import org.mynode.model.Customer;
 import org.mynode.service.CustomerService;
+import org.mynode.service.JWTService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,8 @@ public class CustomerController {
     Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     CustomerService customerService;
-
+    @Autowired
+    JWTService jwtService;
     /**
      * GET {prefix}/customer
      * @param
@@ -27,11 +29,11 @@ public class CustomerController {
     }
 
     /**
-     * POST {prefix}/customer/body
+     * POST {prefix}/customer
      * @param
      * @return
      */
-    @RequestMapping(value = "/body", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public Customer createCustomer(@RequestBody Customer customer){
         Customer cu = customerService.save(customer);
         return cu;
@@ -81,4 +83,20 @@ public class CustomerController {
         c.setName(name);
         return c;
     }
+    /**
+     * Post {prefix}/customer/auth?name={name}&password={password}
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/auth", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public String userLogin(@RequestParam("username") String emailOrUsername, @RequestParam("password") String password) {
+        try {
+            Customer c = customerService.getUserByCredentials(emailOrUsername, password);
+            return jwtService.generateToken(c);
+        }catch (Exception e){
+            logger.error(e.getMessage());
+        }
+        return null;
+    }
+
 }

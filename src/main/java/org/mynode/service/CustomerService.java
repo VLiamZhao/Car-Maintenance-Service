@@ -15,6 +15,8 @@ public class CustomerService {
         return customerDao.getCustomerEagerBy(id);
     }
 
+    public Customer getCustomerByName(String name){ return customerDao.getCustomerByName(name);}
+
     public List<Customer> getCustomers(){
         return customerDao.getCustomers();
     }
@@ -32,4 +34,5 @@ public class CustomerService {
     }
 
 //    public boolean updateCustomer(Customer customer){return customerDao.updateCustomer(customer); }
+    public Customer getUserByCredentials(String email, String password) throws Exception {return customerDao.getUserByCredentials(email, password);}
 }

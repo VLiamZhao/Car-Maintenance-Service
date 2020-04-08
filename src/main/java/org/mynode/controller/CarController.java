@@ -50,11 +50,11 @@ public class CarController {
     }
 
     /**
-     * POST {prefix}/car/body
+     * POST {prefix}/car
      * @param
      * @return
      */
-    @RequestMapping(value = "/body", method = RequestMethod.GET, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "", method = RequestMethod.GET, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public List<Car> createCarsByCustomer(@RequestBody Customer customer){
         List<Car> cars = carService.getCarsByCustomer(customer);
         return cars;

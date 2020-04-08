@@ -29,11 +29,11 @@ public class MaintenanceController {
     }
 
     /**
-     * POST {prefix}/maintenance/body
+     * POST {prefix}/maintenance
      * @param
      * @return
      */
-    @RequestMapping(value = "/body", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public Maintenance createMaintenance(@RequestBody Maintenance maintenance){
         return maintenanceService.save(maintenance);
     }

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication(scanBasePackages = {"org.mynode"})
-//@ServletComponentScan(basePackages = {"org.mynode.filter"})
+@ServletComponentScan(basePackages = {"org.mynode.filter"})
 public class ApplicationBootstrap {
 
     public static void main(String[] args){
