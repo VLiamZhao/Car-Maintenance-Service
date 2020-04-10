@@ -14,9 +14,9 @@ Simplified and streamlined database operations with Hibernate. Implemented JWT s
 1. Created User, Team, Player, and Player Statistics object, and created related table and col in the database.
 2. The relation between Team and Player is One to Many, the team_id will be the foregin key and will be stored in the player table.
 3. The relation between Player and Player Statistics is One to One, the player_id will be the foregin key and will be stored in the player statistics table.
-
+## Building Project
 ### Compile
-1. XXX
-2. XXX
+1. ---------------------
+2. ---------------------
 
 ### Test
