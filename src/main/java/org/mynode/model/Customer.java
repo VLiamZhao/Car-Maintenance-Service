@@ -1,5 +1,6 @@
 package org.mynode.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.persistence.*;
@@ -84,6 +85,7 @@ public class Customer {
             joinColumns = { @JoinColumn(name = "customer_id") },
             inverseJoinColumns = { @JoinColumn(name = "role_id") }
     )
+    @JsonIgnore
     private List<Role> roleList;
 
     public long getId() {

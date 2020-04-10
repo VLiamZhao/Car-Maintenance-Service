@@ -85,14 +85,13 @@ public class CustomerController {
     }
     /**
      * Post {prefix}/customer/auth?name={name}&password={password}
-     * @param emailOrUsername
-     * @param password
+     * @param
      * @return
      */
     @RequestMapping(value = "/auth", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String userLogin(@RequestParam("username") String emailOrUsername, @RequestParam("password") String password) {
+    public String userLogin(@RequestParam(name = "username") String username, @RequestParam(name = "password") String password) {
         try {
-            Customer c = customerService.getCustomerByCredentials(emailOrUsername, password);
+            Customer c = customerService.getCustomerByCredentials(username, password);
             return jwtService.generateToken(c);
 
         }catch (Exception e){
