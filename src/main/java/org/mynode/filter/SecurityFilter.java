@@ -28,7 +28,7 @@ public class SecurityFilter implements Filter {
     @Autowired
     CustomerService customerService;
     private Logger logger = LoggerFactory.getLogger(getClass());
-    private static final Set<String> IGNORED_PATHS = new HashSet<>(Arrays.asList("/auth"));
+    private static final Set<String> IGNORED_PATHS = new HashSet<>(Arrays.asList("/auth", "/auth/registration"));
 
 
     @Override

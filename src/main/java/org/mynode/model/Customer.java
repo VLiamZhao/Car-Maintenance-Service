@@ -24,7 +24,7 @@ public class Customer {
     public Customer(String name, String email, String password) {
         this.name = name;
         this.email = email;
-        this.password = password;
+        this.password = DigestUtils.md5Hex(password.trim());
         cars = new ArrayList<>();
         roleList = new ArrayList<>();
     }
