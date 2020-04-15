@@ -1,6 +1,7 @@
 package org.mynode.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.persistence.*;

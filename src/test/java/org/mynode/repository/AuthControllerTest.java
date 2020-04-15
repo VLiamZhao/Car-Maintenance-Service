@@ -47,7 +47,10 @@ public class AuthControllerTest {
     @Test
     public void getCustomerByCredentials() throws Exception {
         Customer c1 = customerService.getCustomerByCredentials(email, pw);
-//        List<Role> l = c1.getRoleList();
+        List<Role> l = c1.getRoleList();
+        for(Role r : l){
+
+        }
         Assert.assertNotNull(c1);
     }
 

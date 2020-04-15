@@ -27,22 +27,22 @@ public class AuthController {
     private RoleDao roleDao;
     @Autowired
     private JWTService jwtService;
+
     @RequestMapping(value="", method = RequestMethod.POST)
-    @ResponseBody
-    public Object userLogin(@RequestBody Customer c){
+    public String userLogin(@RequestBody Customer c){
         try{
             Customer cus = customerService.getCustomerByCredentials(c.getName(), c.getPassword());
             assert(cus != null);
-            Claims s = jwtService.decodeJwtToken(jwtService.generateToken(c));
-            return s;
+            return jwtService.generateToken(cus);
         } catch (Exception e){
             e.printStackTrace();
         }
         return null;
     }
+    // "token":"xxxxxxx"
 
     @RequestMapping(value = "/registration",method = RequestMethod.POST)
-    public ResponseEntity userSignUp(@RequestBody Customer customer){
+    public ResponseEntity<?> userSignUp(@RequestBody Customer customer){
         try{
             List<Role> roles=new ArrayList<>();
             Role r=roleDao.getRoleById(3L);
@@ -54,6 +54,6 @@ public class AuthController {
         } catch (Exception e){
             e.printStackTrace();
         }
-        return null;
+        return ResponseEntity.ok(customer);
     }
 }
