@@ -1,5 +1,7 @@
 package org.mynode.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class Role {
     private boolean allowedDelete;
 
     @ManyToMany(mappedBy = "roleList")
+    @JsonIgnore
     private List<Customer> customerList;
 
     public long getId() {

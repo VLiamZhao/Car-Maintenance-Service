@@ -134,7 +134,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public Customer getCustomerByCredentials(String emailOrUsername, String password) throws Exception {
-        String hql = "FROM Customer as u where (lower(u.email) = :email or lower(u.name) =:email) and u.password = :password";
+        String hql = "FROM Customer as u left join fetch u.roleList where (lower(u.email) = :email or lower(u.name) =:email) and u.password = :password";
         logger.debug(String.format("User email: %s, password: %s", emailOrUsername, password));
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<Customer> query = session.createQuery(hql);

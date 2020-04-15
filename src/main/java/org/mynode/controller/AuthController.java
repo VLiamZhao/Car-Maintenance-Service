@@ -1,5 +1,7 @@
 package org.mynode.controller;
 
+import io.jsonwebtoken.Claims;
+import org.json.JSONObject;
 import org.mynode.model.Customer;
 import org.mynode.model.Role;
 import org.mynode.repository.RoleDao;
@@ -26,10 +28,13 @@ public class AuthController {
     @Autowired
     private JWTService jwtService;
     @RequestMapping(value="", method = RequestMethod.POST)
-    public String userLogin(@RequestBody Customer c){
+    @ResponseBody
+    public Object userLogin(@RequestBody Customer c){
         try{
             Customer cus = customerService.getCustomerByCredentials(c.getName(), c.getPassword());
-            return jwtService.generateToken(c);
+            assert(cus != null);
+            Claims s = jwtService.decodeJwtToken(jwtService.generateToken(c));
+            return s;
         } catch (Exception e){
             e.printStackTrace();
         }
