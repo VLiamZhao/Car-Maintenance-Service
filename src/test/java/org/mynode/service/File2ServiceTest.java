@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.File;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ApplicationBootstrap.class)
 public class File2ServiceTest {
@@ -15,6 +17,7 @@ public class File2ServiceTest {
 
     @Test
     public void uploadFileTest(){
-        file2Service.uploadFile();
+        File f = new File("/home/can/b.txt");
+        file2Service.uploadFile(f);
     }
 }
