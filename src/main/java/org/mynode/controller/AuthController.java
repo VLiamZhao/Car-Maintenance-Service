@@ -1,7 +1,7 @@
 package org.mynode.controller;
 
-import io.jsonwebtoken.Claims;
-import org.json.JSONObject;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.mynode.model.Customer;
 import org.mynode.model.Role;
 import org.mynode.repository.RoleDao;
@@ -29,11 +29,14 @@ public class AuthController {
     private JWTService jwtService;
 
     @RequestMapping(value="", method = RequestMethod.POST)
-    public String userLogin(@RequestBody Customer c){
+    public ResponseEntity<String> userLogin(@RequestBody Customer c){
         try{
             Customer cus = customerService.getCustomerByCredentials(c.getName(), c.getPassword());
             assert(cus != null);
-            return jwtService.generateToken(cus);
+            String token = jwtService.generateToken(cus);
+            String jsonStr = "{\"token\":"+ token + "}" ;
+            JsonObject jsonObject = new JsonParser().parse(jsonStr).getAsJsonObject();
+            return ResponseEntity.ok().body(jsonObject.toString());
         } catch (Exception e){
             e.printStackTrace();
         }
