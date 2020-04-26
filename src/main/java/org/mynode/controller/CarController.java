@@ -1,7 +1,9 @@
 package org.mynode.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.mynode.model.Car;
 import org.mynode.model.Customer;
+import org.mynode.model.view.JsView;
 import org.mynode.service.CarService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,7 +1,9 @@
 package org.mynode.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.mynode.model.Customer;
 import org.mynode.model.Maintenance;
+import org.mynode.model.view.JsView;
 import org.mynode.service.MaintenanceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = {"/maintenance"})
+
 public class MaintenanceController {
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired

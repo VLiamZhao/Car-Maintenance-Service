@@ -51,6 +51,10 @@ public class SecurityFilter implements Filter {
             if (token == null || token.isEmpty()) return statusCode;
 
             Claims claims = jwtService.decodeJwtToken(token);
+            if (claims.getId() != null) {
+                Customer c = customerService.getCustomerById(Long.valueOf(claims.getId()));
+                if (c == null) return HttpServletResponse.SC_BAD_REQUEST;
+            }
             String allowedResources = "/";
             switch(verb) {
               case "GET"    : allowedResources = (String)claims.get("allowedReadResources");   break;
@@ -58,7 +62,7 @@ public class SecurityFilter implements Filter {
               case "PUT"    : allowedResources = (String)claims.get("allowedUpdateResources"); break;
               case "DELETE" : allowedResources = (String)claims.get("allowedDeleteResources"); break;
             }
-
+            statusCode = HttpServletResponse.SC_UNAUTHORIZED;
             for (String s : allowedResources.split(",")) {
               if (uri.trim().toLowerCase().startsWith(s.trim().toLowerCase())) {
                   statusCode = HttpServletResponse.SC_ACCEPTED;
@@ -68,12 +72,9 @@ public class SecurityFilter implements Filter {
 
             logger.debug(String.format("Verb: %s, allowed resources: %s", verb, allowedResources));
 
-            if (claims.getId() != null) {
-                Customer c = customerService.getCustomerById(Long.valueOf(claims.getId()));
-                if (c != null) statusCode = HttpServletResponse.SC_ACCEPTED;
-            }
+
         }catch (Exception e){
-            logger.error(e.getMessage());
+            e.printStackTrace();
         }
         return statusCode;
     }

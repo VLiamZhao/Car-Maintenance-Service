@@ -1,6 +1,8 @@
 package org.mynode.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import org.mynode.model.view.JsView;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -24,23 +26,29 @@ public class Maintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @JsonView({JsView.User.class})
     private long id;
 
     @Column(name = "component")
+    @JsonView({JsView.User.class})
     private String component;
 
     @Column(name = "cost")
+    @JsonView({JsView.User.class})
     private BigDecimal cost;
 
     @Column(name = "date")
+    @JsonView({JsView.User.class})
     private LocalDate date;
 
     @Column(name = "description")
+    @JsonView({JsView.User.class})
     private String description;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "car_id")
+    @JsonView({JsView.User.class})
     private Car car;
 
 

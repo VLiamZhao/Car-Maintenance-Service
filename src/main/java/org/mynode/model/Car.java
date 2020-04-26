@@ -2,6 +2,8 @@ package org.mynode.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import org.mynode.model.view.JsView;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -37,23 +39,28 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @JsonView({JsView.User.class})
     private long id;
 
     @Column(name = "type")
+    @JsonView({JsView.User.class})
     private  String type;
 
     @Column(name = "price")
+    @JsonView({JsView.User.class})
     private BigDecimal price;
 
     @Column(name = "regi_date")
+    @JsonView({JsView.User.class})
     private LocalDate regi_date;
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private Customer customer;
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonView({JsView.User.class})
     private List<Maintenance> maintenances;
 
     public LocalDate getRegDate() {

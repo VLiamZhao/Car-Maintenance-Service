@@ -1,6 +1,8 @@
 package org.mynode.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import org.mynode.model.view.JsView;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,16 +15,23 @@ public class Role {
     //@GeneratedValue(strategy = SEQUENCE, generator = "role_id_generator")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
+
     @Column(name = "name")
+    @JsonView({JsView.Admin.class})
     private String name;
+
     @Column(name = "allowed_resource")
     private String allowedResource;
+
     @Column(name = "allowed_read")
     private boolean allowedRead;
+
     @Column(name = "allowed_create")
     private boolean allowedCreate;
+
     @Column(name = "allowed_update")
     private boolean allowedUpdate;
+
     @Column(name = "allowed_delete")
     private boolean allowedDelete;
 

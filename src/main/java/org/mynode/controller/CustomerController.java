@@ -1,6 +1,8 @@
 package org.mynode.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.mynode.model.Customer;
+import org.mynode.model.view.JsView;
 import org.mynode.service.CustomerService;
 import org.mynode.service.JWTService;
 import org.slf4j.Logger;
@@ -24,6 +26,7 @@ public class CustomerController {
      * @return
      */
     @RequestMapping(value = "", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @JsonView(JsView.User.class)
     public List<Customer> getCustomers(){
         return customerService.getCustomers();
     }
@@ -34,6 +37,7 @@ public class CustomerController {
      * @return
      */
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @JsonView(JsView.User.class)
     public Customer createCustomer(@RequestBody Customer customer){
         Customer cu = customerService.save(customer);
         return cu;
@@ -45,6 +49,7 @@ public class CustomerController {
      * @return
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @JsonView(JsView.User.class)
     public Customer getCustomerById(@PathVariable long id){
         Customer customer = customerService.getCustomerById(id);
         return customer;
@@ -56,6 +61,7 @@ public class CustomerController {
      * @return
      */
     @RequestMapping(value = "/eager", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @JsonView(JsView.User.class)
     public Customer getCustomerEagerBy(@RequestParam(name = "id") long inputId){
         Customer customer = customerService.getCustomerEagerBy(inputId);
         return customer;
@@ -78,6 +84,7 @@ public class CustomerController {
      * @return
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.PATCH, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @JsonView(JsView.User.class)
     public Customer updateCustomer(@PathVariable("id") long id, @RequestParam("name") String name) {
         Customer c = customerService.getCustomerById(id);
         c.setName(name);
@@ -88,17 +95,17 @@ public class CustomerController {
      * @param
      * @return
      */
-    @RequestMapping(value = "/auth", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String userLogin(@RequestParam(name = "username") String username, @RequestParam(name = "password") String password) {
-        try {
-            Customer c = customerService.getCustomerByCredentials(username, password);
-            return jwtService.generateToken(c);
-
-        }catch (Exception e){
-            logger.error(e.getMessage());
-        }
-        return null;
-    }
+//    @RequestMapping(value = "/auth", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
+//    public String userLogin(@RequestParam(name = "username") String username, @RequestParam(name = "password") String password) {
+//        try {
+//            Customer c = customerService.getCustomerByCredentials(username, password);
+//            return jwtService.generateToken(c);
+//
+//        }catch (Exception e){
+//            logger.error(e.getMessage());
+//        }
+//        return null;
+//    }
 
 
 

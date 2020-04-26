@@ -3,6 +3,7 @@ package org.mynode.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.mynode.model.view.JsView;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -39,13 +40,19 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @JsonView({JsView.User.class})
     private long id;
+
     @Column(name = "name")
+    @JsonView({JsView.User.class})
     private String name;
+
     @Column(name = "description")
+    @JsonView({JsView.User.class})
     private String description;
 
     @Column(name = "email")
+    @JsonView({JsView.User.class})
     private String email;
 
     @Column(name = "password")
@@ -53,6 +60,18 @@ public class Customer {
 
     @Column(name = "secret_key")
     private String secretKey;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonView({JsView.User.class})
+    private List<Car> cars;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "customer_role",
+            joinColumns = { @JoinColumn(name = "customer_id") },
+            inverseJoinColumns = { @JoinColumn(name = "role_id") }
+    )
+    @JsonView({JsView.Admin.class})
+    private List<Role> roleList;
 
     public String getEmail() {
         return email;
@@ -77,17 +96,6 @@ public class Customer {
     public void setSecretKey(String secretKey) {
         this.secretKey = secretKey;
     }
-
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    private List<Car> cars;
-
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name = "customer_role",
-            joinColumns = { @JoinColumn(name = "customer_id") },
-            inverseJoinColumns = { @JoinColumn(name = "role_id") }
-    )
-    @JsonIgnore
-    private List<Role> roleList;
 
     public long getId() {
         return id;

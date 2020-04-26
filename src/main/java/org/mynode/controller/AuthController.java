@@ -1,9 +1,11 @@
 package org.mynode.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.mynode.model.Customer;
 import org.mynode.model.Role;
+import org.mynode.model.view.JsView;
 import org.mynode.repository.RoleDao;
 import org.mynode.service.CustomerService;
 import org.mynode.service.JWTService;
@@ -29,9 +31,15 @@ public class AuthController {
     private JWTService jwtService;
 
     @RequestMapping(value="", method = RequestMethod.POST)
+    @JsonView(JsView.Anonymous.class)
     public ResponseEntity<String> userLogin(@RequestBody Customer c){
         try{
-            Customer cus = customerService.getCustomerByCredentials(c.getName(), c.getPassword());
+            Customer cus;
+            if (c.getName() != null){
+                cus = customerService.getCustomerByCredentials(c.getName(), c.getPassword());
+            } else {
+                cus = customerService.getCustomerByCredentials(c.getEmail(), c.getPassword());
+            }
             assert(cus != null);
             String token = jwtService.generateToken(cus);
             String jsonStr = "{\"token\":"+ token + "}" ;
@@ -45,10 +53,11 @@ public class AuthController {
     // "token":"xxxxxxx"
 
     @RequestMapping(value = "/registration",method = RequestMethod.POST)
+    @JsonView(JsView.Anonymous.class)
     public ResponseEntity<?> userSignUp(@RequestBody Customer customer){
         try{
             List<Role> roles=new ArrayList<>();
-            Role r=roleDao.getRoleById(3L);
+            Role r=roleDao.getRoleById(2L);
             roles.add(r);
             customer.setRoleList(roles);
             Customer c=customerService.save(customer);
@@ -57,6 +66,7 @@ public class AuthController {
         } catch (Exception e){
             e.printStackTrace();
         }
-        return ResponseEntity.ok(customer);
+//        return ResponseEntity.ok(customer);
+        return null;
     }
 }

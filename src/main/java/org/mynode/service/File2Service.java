@@ -14,8 +14,13 @@ public class File2Service {
     String bucketName = "canzhao";
     @Autowired
     AmazonS3 s3Client;
+
     public void uploadFile(File f){
         PutObjectRequest request = new PutObjectRequest(bucketName, f.getName(), f);
         s3Client.putObject(request);
+    }
+
+    public String getUrl(String s3Key){
+        return s3Client.getUrl(bucketName, s3Key).toExternalForm();
     }
 }
