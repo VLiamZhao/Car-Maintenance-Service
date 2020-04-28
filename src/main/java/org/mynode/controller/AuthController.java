@@ -54,7 +54,7 @@ public class AuthController {
 
     @RequestMapping(value = "/registration",method = RequestMethod.POST)
     @JsonView(JsView.Anonymous.class)
-    public ResponseEntity<?> userSignUp(@RequestBody Customer customer){
+    public ResponseEntity<Customer> userSignUp(@RequestBody Customer customer){
         try{
             List<Role> roles=new ArrayList<>();
             Role r=roleDao.getRoleById(2L);

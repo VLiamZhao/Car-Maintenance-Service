@@ -1,5 +1,5 @@
 insert into role (name, allowed_resource, allowed_read, allowed_create, allowed_update, allowed_delete) values
-('Admin', '/', 'Y', 'Y', 'Y', 'Y'),
+('Admin', '/files, /customer, /car, /maintenance', 'Y', 'Y', 'Y', 'Y'),
 ('Manager', '/customer, /car, /maintenance', 'Y', 'Y', 'Y', 'N'),
 ('user', '/car, /maintenance', 'Y', 'N', 'N', 'N');
 commit;

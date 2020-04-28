@@ -15,6 +15,6 @@ import static org.mockito.Mockito.mock;
 @Profile("unit")
 public class AWSTestConfig {
     @Bean
-//    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)  //this is default option
     public AmazonS3 getAmazonS3() {return mock(AmazonS3.class);}
 }

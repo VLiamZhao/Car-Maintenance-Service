@@ -2,10 +2,8 @@ package org.mynode.service;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mynode.init.ApplicationBootstrap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +20,9 @@ import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ApplicationBootstrap.class)
-public class File2ServiceTest {
+public class FileServiceTest {
     @Autowired
-    File2Service file2Service;
+    FileService fileService;
     @Autowired
     AmazonS3 s3Client;
 
@@ -35,8 +33,8 @@ public class File2ServiceTest {
 //        verify(s3Client, times(1)).putObject(anyString(), anyString(), anyString());
 //        File testFile = new File("/home/can/a.txt");
         File testFile = Mockito.mock(File.class);
+        fileService.uploadFile(testFile);
         verify(s3Client,times(1)).putObject(any(PutObjectRequest.class));
-        file2Service.uploadFile(testFile);
     }
 
 //    @Test
@@ -45,4 +43,18 @@ public class File2ServiceTest {
 //        file2Service.getUrl("a.txt");
 //        verify(s3Client,times(1)).putObject(any(PutObjectRequest.class));
 //    }
+    @Test // stub test
+    public void uploadFileStubTest(){
+        File testFile = Mockito.mock(File.class);
+        when(testFile.getName()).thenReturn("filename.pdf");  // The getName method will always return "filename.pdf"
+        fileService.uploadFile(testFile);
+        verify(s3Client,times(1)).putObject(any(PutObjectRequest.class));
+    }
+
+    @Test
+    public void getUrlTest() throws MalformedURLException {
+        when(s3Client.getUrl(anyString(),anyString())).thenReturn(new URL("http","xxx", 123, "xxx"));
+        fileService.getUrl("Zhang3");
+        verify(s3Client, times(1)).getUrl(anyString(), anyString());
+    }
 }
