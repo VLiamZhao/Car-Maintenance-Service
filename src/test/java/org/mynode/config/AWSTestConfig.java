@@ -1,6 +1,9 @@
 package org.mynode.config;
 
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.sqs.AmazonSQS;
+import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -17,4 +20,15 @@ public class AWSTestConfig {
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)  //this is default option
     public AmazonS3 getAmazonS3() {return mock(AmazonS3.class);}
+
+    @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+    public AmazonSQS getAmazonSQS(){
+        return AmazonSQSClientBuilder
+                .standard()
+                .withCredentials(new DefaultAWSCredentialsProviderChain())
+                .build();
+
+    }
 }
+

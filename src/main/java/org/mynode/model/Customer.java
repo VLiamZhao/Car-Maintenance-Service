@@ -56,6 +56,7 @@ public class Customer {
     private String email;
 
     @Column(name = "password")
+    @JsonView({JsView.Admin.class})
     private String password;
 
     @Column(name = "secret_key")
@@ -70,7 +71,7 @@ public class Customer {
             joinColumns = { @JoinColumn(name = "customer_id") },
             inverseJoinColumns = { @JoinColumn(name = "role_id") }
     )
-    @JsonView({JsView.Admin.class})
+    @JsonIgnore
     private List<Role> roleList;
 
     public String getEmail() {

@@ -14,13 +14,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping(value = {"/files"})
-public class MultiPartFileController {
+public class FileController {
     @Autowired
     private FileService fileService;
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @RequestMapping(value="", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public void uploadFile(@RequestParam("file") MultipartFile file){
+    public String uploadFile(@RequestParam("file") MultipartFile file){
         logger.info("test file name: " + file.getOriginalFilename());
+        try{
+            return fileService.uploadFile("canzhao", file);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

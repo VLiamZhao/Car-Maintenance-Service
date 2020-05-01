@@ -30,10 +30,10 @@ public class Car {
         List<Maintenance> maintenances = new ArrayList<>();
     }
 
-    public Car(String type, BigDecimal price, LocalDate reg_date) {
+    public Car(String type, BigDecimal price, LocalDate regi_date) {
         this.type = type;
         this.price = price;
-        this.regi_date = reg_date;
+        this.regi_date = regi_date;
         List<Maintenance> maintenances = new ArrayList<>();
     }
     @Id
@@ -60,7 +60,7 @@ public class Car {
     private Customer customer;
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JsonView({JsView.User.class})
+    @JsonIgnore
     private List<Maintenance> maintenances;
 
     public LocalDate getRegDate() {

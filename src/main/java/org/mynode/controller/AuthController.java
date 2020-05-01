@@ -31,7 +31,6 @@ public class AuthController {
     private JWTService jwtService;
 
     @RequestMapping(value="", method = RequestMethod.POST)
-    @JsonView(JsView.Anonymous.class)
     public ResponseEntity<String> userLogin(@RequestBody Customer c){
         try{
             Customer cus;
@@ -53,16 +52,16 @@ public class AuthController {
     // "token":"xxxxxxx"
 
     @RequestMapping(value = "/registration",method = RequestMethod.POST)
-    @JsonView(JsView.Anonymous.class)
-    public ResponseEntity<Customer> userSignUp(@RequestBody Customer customer){
+    public ResponseEntity<String> userSignUp(@RequestBody Customer customer){
         try{
             List<Role> roles=new ArrayList<>();
-            Role r=roleDao.getRoleById(2L);
+            Role r=roleDao.getRoleById(3L);
             roles.add(r);
             customer.setRoleList(roles);
             Customer c=customerService.save(customer);
             if(c==null) return ResponseEntity.status(HttpServletResponse.SC_BAD_REQUEST).build();
-            return ResponseEntity.status(HttpServletResponse.SC_OK).body(c);
+//            return ResponseEntity.status(HttpServletResponse.SC_OK).body(c);
+            return ResponseEntity.status(HttpServletResponse.SC_OK).body("Registration is successfully finished!");
         } catch (Exception e){
             e.printStackTrace();
         }

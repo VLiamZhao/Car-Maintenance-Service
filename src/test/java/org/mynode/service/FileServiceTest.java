@@ -9,6 +9,7 @@ import org.mynode.init.ApplicationBootstrap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -56,5 +57,10 @@ public class FileServiceTest {
         when(s3Client.getUrl(anyString(),anyString())).thenReturn(new URL("http","xxx", 123, "xxx"));
         fileService.getUrl("Zhang3");
         verify(s3Client, times(1)).getUrl(anyString(), anyString());
+    }
+
+    @Test
+    public void uploadMultiPartFileTest(){
+
     }
 }
