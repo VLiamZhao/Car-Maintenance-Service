@@ -95,7 +95,7 @@ public class Car {
         this.customer = customer;
     }
 
-    //TODO test to after removing - finished
+    //TODO test to after removing - done
     public List<Maintenance> getMaintenances() {
         /* This solve the session closed exception when the fetch type is lazy */
 //        try {

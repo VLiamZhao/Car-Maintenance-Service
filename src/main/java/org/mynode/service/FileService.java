@@ -18,7 +18,7 @@ import java.util.UUID;
 
 @Service
 public class FileService {
-    ///TODO REMOVE THE sTRING... - finished
+    ///TODO REMOVE THE sTRING... - done
     @Value("${aws.s3.bucket}")
     private String bucketName;
 
@@ -48,7 +48,7 @@ public class FileService {
             ObjectMetadata objectMetadata = new ObjectMetadata();
             objectMetadata.setContentType(file.getContentType());
             objectMetadata.setContentLength(file.getSize());
-            s3Client.putObject(bucketName, file.getOriginalFilename(), file.getInputStream(), objectMetadata);
+            s3Client.putObject(bucketName, newFilename, file.getInputStream(), objectMetadata);
             logger.info(String.format("The file name=%s was uploaded to bucket %s", file.getName(), bucketName));
             return newFilename;
         } catch (Exception e){

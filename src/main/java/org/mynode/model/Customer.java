@@ -67,7 +67,7 @@ public class Customer {
             inverseJoinColumns = { @JoinColumn(name = "role_id") }
     )
     @JsonIgnore
-    //TODO move arraylist initalization - finished
+    //TODO move arraylist initalization - done
     private List<Role> roleList = new ArrayList<>();
 
     public String getEmail() {

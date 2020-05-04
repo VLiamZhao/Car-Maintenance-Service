@@ -22,7 +22,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class JWTService {
-    // TODO change to vm option - finished
+    // TODO change to vm option - done
+    // Further question: why cannot use @Value?
     private static String SECURITY_KEY = System.getProperty("jwt.securitykey");
     private static String ISSUER = System.getProperty("jwt.issuer");
     private final long EXPIREATION_TIME = 86400 * 1000;

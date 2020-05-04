@@ -7,6 +7,8 @@ import org.mynode.model.view.JsView;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 @Entity
 @Table(name = "maintenance")
@@ -38,9 +40,10 @@ public class Maintenance {
     private BigDecimal cost;
 
     @Column(name = "date")
-    //TODO change formate to MM/dd/YYYY
+    //TODO change formate to MM/dd/YYYY - done
     @JsonView({JsView.User.class})
-    private LocalDate date;
+    private LocalDate date  = LocalDate.now();
+
 
     @Column(name = "description")
     @JsonView({JsView.User.class})
@@ -76,9 +79,9 @@ public class Maintenance {
     public void setCost(BigDecimal cost) {
         this.cost = cost;
     }
-
-    public LocalDate getDate() {
-        return date;
+//TODO has a problem?
+    public String getDate() {
+        return this.date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
     }
 
     public void setDate(LocalDate date) {
