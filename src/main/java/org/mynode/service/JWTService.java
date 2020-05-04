@@ -8,6 +8,7 @@ import org.mynode.model.Customer;
 import org.mynode.model.Role;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -21,8 +22,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class JWTService {
-    private static final String SECURITY_KEY = "LiamZhao";
-    private final String ISSUER = "org.mynode";
+    // TODO change to vm option - finished
+    private static String SECURITY_KEY = System.getProperty("jwt.securitykey");
+    private static String ISSUER = System.getProperty("jwt.issuer");
     private final long EXPIREATION_TIME = 86400 * 1000;
     private static Logger logger = LoggerFactory.getLogger(JWTService.class);
     public String generateToken(Customer c){

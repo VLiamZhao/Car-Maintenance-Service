@@ -24,6 +24,7 @@ public class JWTServiceTest {
         customer.setName("CZ");
         String token = jwtService.generateToken(customer);
 //        Assert.assertNotNull(token);
+        // TODO use regular expression
         String[] arr = token.split("\\.");
         Assert.assertEquals(arr.length, 3);
     }

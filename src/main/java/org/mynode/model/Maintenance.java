@@ -38,6 +38,7 @@ public class Maintenance {
     private BigDecimal cost;
 
     @Column(name = "date")
+    //TODO change formate to MM/dd/YYYY
     @JsonView({JsView.User.class})
     private LocalDate date;
 

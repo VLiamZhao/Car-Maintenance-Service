@@ -12,30 +12,21 @@ import java.util.List;
 @Entity
 @Table(name = "customer")
 public class Customer {
-    public Customer() {
-        cars = new ArrayList<>();
-        roleList = new ArrayList<>();
-    }
+    public Customer() {}
 
     public Customer(String name) {
         this.name = name;
-        cars = new ArrayList<>();
-        roleList = new ArrayList<>();
     }
 
     public Customer(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = DigestUtils.md5Hex(password.trim());
-        cars = new ArrayList<>();
-        roleList = new ArrayList<>();
     }
 
     public Customer(String name, String description) {
         this.name = name;
         this.description = description;
-        cars = new ArrayList<>();
-        roleList = new ArrayList<>();
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,7 +55,11 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JsonView({JsView.User.class})
-    private List<Car> cars;
+    private List<Car> cars = new ArrayList<>();
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JsonView({JsView.User.class})
+    private List<Image> images = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "customer_role",
@@ -72,7 +67,8 @@ public class Customer {
             inverseJoinColumns = { @JoinColumn(name = "role_id") }
     )
     @JsonIgnore
-    private List<Role> roleList;
+    //TODO move arraylist initalization - finished
+    private List<Role> roleList = new ArrayList<>();
 
     public String getEmail() {
         return email;
@@ -82,6 +78,8 @@ public class Customer {
         this.email = email;
     }
 
+//    @JsonIgnore
+    //TODO test signup controller - problem??
     public String getPassword() {
         return password;
     }
@@ -156,5 +154,9 @@ public class Customer {
 
     public void setRoleList(List<Role> roleList) {
         this.roleList = roleList;
+    }
+
+    public List<Image> getImages() {
+        return images;
     }
 }

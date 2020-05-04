@@ -1,8 +1,6 @@
 package org.mynode.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import org.mynode.model.Customer;
 import org.mynode.model.Role;
 import org.mynode.model.view.JsView;
@@ -17,7 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = {"/auth"}, method = RequestMethod.POST)
@@ -31,7 +31,7 @@ public class AuthController {
     private JWTService jwtService;
 
     @RequestMapping(value="", method = RequestMethod.POST)
-    public ResponseEntity<String> userLogin(@RequestBody Customer c){
+    public ResponseEntity<Map<String, String>> userLogin(@RequestBody Customer c){
         try{
             Customer cus;
             if (c.getName() != null){
@@ -41,9 +41,9 @@ public class AuthController {
             }
             assert(cus != null);
             String token = jwtService.generateToken(cus);
-            String jsonStr = "{\"token\":"+ token + "}" ;
-            JsonObject jsonObject = new JsonParser().parse(jsonStr).getAsJsonObject();
-            return ResponseEntity.ok().body(jsonObject.toString());
+            Map<String, String> m = new HashMap<>();
+            m.put("token",token);
+            return ResponseEntity.ok().body(m);
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -55,7 +55,7 @@ public class AuthController {
     public ResponseEntity<String> userSignUp(@RequestBody Customer customer){
         try{
             List<Role> roles=new ArrayList<>();
-            Role r=roleDao.getRoleById(3L);
+            Role r=roleDao.getRoleByName(Role.baseRole);
             roles.add(r);
             customer.setRoleList(roles);
             Customer c=customerService.save(customer);

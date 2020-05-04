@@ -8,6 +8,7 @@ import com.google.common.io.Files;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,19 +18,22 @@ import java.util.UUID;
 
 @Service
 public class FileService {
-    String defaultRegion = "us-east-1";
-    String bucketName = "canzhao";
+    ///TODO REMOVE THE sTRING... - finished
+    @Value("${aws.s3.bucket}")
+    private String bucketName;
+
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     AmazonS3 s3Client;
 
-    public void uploadFile(File f){
+    public String uploadFile(File f){
         if (f != null) {
             PutObjectRequest request = new PutObjectRequest(bucketName, f.getName(), f);
             s3Client.putObject(request);
         }else{
             logger.error("Cannot upload null file!");
         }
+        return null;
     }
 
     public String getUrl(String s3Key){

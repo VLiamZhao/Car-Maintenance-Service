@@ -14,27 +14,19 @@ import java.util.List;
 @Entity
 @Table(name = "car")
 public class Car {
-
-    public Car() {
-        List<Maintenance> maintenances = new ArrayList<>();
-    }
-
     public Car(String type) {
         this.type = type;
-        List<Maintenance> maintenances = new ArrayList<>();
     }
 
     public Car(String type, BigDecimal price) {
         this.type = type;
         this.price = price;
-        List<Maintenance> maintenances = new ArrayList<>();
     }
 
     public Car(String type, BigDecimal price, LocalDate regi_date) {
         this.type = type;
         this.price = price;
         this.regi_date = regi_date;
-        List<Maintenance> maintenances = new ArrayList<>();
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,7 +53,7 @@ public class Car {
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JsonIgnore
-    private List<Maintenance> maintenances;
+    private List<Maintenance> maintenances = new ArrayList<>();
 
     public LocalDate getRegDate() {
         return regi_date;
@@ -103,15 +95,15 @@ public class Car {
         this.customer = customer;
     }
 
+    //TODO test to after removing - finished
     public List<Maintenance> getMaintenances() {
         /* This solve the session closed exception when the fetch type is lazy */
-        try {
-            int size = maintenances.size();
-        }
-        catch (Exception e) {
-            return null;
-        }
-
+//        try {
+//            int size = maintenances.size();
+//        }
+//        catch (Exception e) {
+//            return null;
+//        }
         return maintenances;
     }
 //    public void setMaintenances(List<Maintenance> maintenances) {

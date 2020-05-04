@@ -14,13 +14,7 @@ import java.util.Properties;
 public class HibernateUtil {
     private static SessionFactory sessionFactory;
     private static Logger logger = LoggerFactory.getLogger(HibernateUtil.class);
-    /* Define Ssystem environment variable
-    -Ddatabase.driver=org.postgresql.Driver
-    -Ddatabase.dialect=org.hibernate.dialect.PostgreSQL9Dialect
-    -Ddatabase.url=jdbc:postgresql://localhost:5432/training_db
-    -Ddatabase.user=admin
-    -Ddatabase.password=Training123!
-    */
+
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {

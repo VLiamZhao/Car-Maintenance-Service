@@ -10,6 +10,8 @@ import java.util.List;
 @Entity
 @Table(name = "role")
 public class Role {
+    //Todo public static final String baseRole=""; - finished
+    public static final String baseRole = "User";
     @Id
     //@SequenceGenerator(name = "role_id_generator", sequenceName = "role_id_seq", allocationSize = 1)
     //@GeneratedValue(strategy = SEQUENCE, generator = "role_id_generator")
