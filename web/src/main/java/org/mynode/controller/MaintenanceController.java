@@ -1,7 +1,7 @@
 package org.mynode.controller;
 
 import org.mynode.model.Maintenance;
-import org.mynode.serviceTest.MaintenanceService;
+import org.mynode.service.MaintenanceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = {"/maintenance"})
-
 public class MaintenanceController {
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired

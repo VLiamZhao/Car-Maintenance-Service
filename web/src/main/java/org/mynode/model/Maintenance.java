@@ -28,31 +28,25 @@ public class Maintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @JsonView({JsView.User.class})
     private long id;
 
     @Column(name = "component")
-    @JsonView({JsView.User.class})
     private String component;
 
     @Column(name = "cost")
-    @JsonView({JsView.User.class})
     private BigDecimal cost;
 
     @Column(name = "date")
     //TODO change formate to MM/dd/YYYY - done
-    @JsonView({JsView.User.class})
     private LocalDate date  = LocalDate.now();
 
 
     @Column(name = "description")
-    @JsonView({JsView.User.class})
     private String description;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "car_id")
-    @JsonView({JsView.User.class})
     private Car car;
 
 

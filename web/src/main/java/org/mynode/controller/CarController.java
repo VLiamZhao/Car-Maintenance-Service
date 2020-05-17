@@ -2,7 +2,7 @@ package org.mynode.controller;
 
 import org.mynode.model.Car;
 import org.mynode.model.Customer;
-import org.mynode.serviceTest.CarService;
+import org.mynode.service.CarService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +23,7 @@ public class CarController {
      * @param
      * @return
      */
+//    @Cacheable(value = "car")
     @RequestMapping(value = "", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public List<Car> getCars(){
         return carService.getCars();
@@ -46,6 +47,7 @@ public class CarController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Car getCarById(@PathVariable (name = "id") long inputId){
+//        logger.info("Getting car with ID {}.", inputId);
         return carService.getCarById(inputId);
     }
 

@@ -8,7 +8,6 @@
     <artifactId>car-service-api</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>ZCNodeProj</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.mynode.org</url>
 

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
@@ -46,11 +47,11 @@ public class CustomerDaoImpl implements CustomerDao {
     public List<Customer> getCustomers() {
         String hql = "From Customer";
         try(Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query query = session.createQuery(hql);
-            return (List<Customer>) query.list();
+            Query<Customer> query = session.createQuery(hql);
+            return query.list();
         }
         catch (Exception e){
-            logger.debug(e.getMessage());
+            logger.error(e.getMessage());
             return null;
         }
     }

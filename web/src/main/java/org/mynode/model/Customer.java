@@ -31,34 +31,32 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-//    @JsonView({JsView.User.class})
+    @JsonView({JsView.User.class})
     private long id;
 
     @Column(name = "name")
-//    @JsonView({JsView.User.class})
+    @JsonView({JsView.User.class})
     private String name;
 
     @Column(name = "description")
-//    @JsonView({JsView.User.class})
+    @JsonView({JsView.User.class})
     private String description;
 
     @Column(name = "email")
-//    @JsonView({JsView.User.class})
     private String email;
 
     @Column(name = "password")
-//    @JsonView({JsView.Admin.class})
     private String password;
 
     @Column(name = "secret_key")
     private String secretKey;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-//    @JsonView({JsView.User.class})
+    @JsonView({JsView.Admin.class})
     private List<Car> cars = new ArrayList<>();
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-//    @JsonView({JsView.User.class})
+    @JsonIgnore
     private List<Image> images = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -70,6 +68,7 @@ public class Customer {
     //TODO move arraylist initalization - done
     private List<Role> roleList = new ArrayList<>();
 
+    @JsonView({JsView.Admin.class})
     public String getEmail() {
         return email;
     }
@@ -78,7 +77,7 @@ public class Customer {
         this.email = email;
     }
 
-//    @JsonIgnore
+    @JsonView({JsView.Admin.class})
     //TODO test signup controller - problem??
     public String getPassword() {
         return password;
@@ -88,6 +87,7 @@ public class Customer {
         this.password = DigestUtils.md5Hex(password.trim());
     }
 
+    @JsonView({JsView.Admin.class})
     public String getSecretKey() {
         return secretKey;
     }
@@ -122,12 +122,12 @@ public class Customer {
 
     public List<Car> getCars() {
         /* This solve the session closed exception when the fetch type is lazy */
-        try {
-            int size = cars.size();
-        }
-        catch (Exception e) {
-            return null;
-        }
+//        try {
+//            int size = cars.size();
+//        }
+//        catch (Exception e) {
+//            return null;
+//        }
 
         return cars;
     }

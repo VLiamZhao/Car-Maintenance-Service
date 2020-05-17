@@ -2,10 +2,10 @@ package org.mynode.model.view;
 
 public class JsView {
 
-    public static class Anonymous{}
+    public static interface Anonymous{}
 
-    public static class User extends Anonymous{}
+    public static interface User extends Anonymous{}
 
-    public static class Admin extends User{}
+    public static interface Admin extends User{}
 
 }

@@ -14,6 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "car")
 public class Car {
+    public Car(){}
     public Car(String type) {
         this.type = type;
     }
@@ -47,12 +48,12 @@ public class Car {
     private LocalDate regi_date;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "owner_id")
     private Customer customer;
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JsonView({JsView.User.class})
     private List<Maintenance> maintenances = new ArrayList<>();
 
     public LocalDate getRegDate() {

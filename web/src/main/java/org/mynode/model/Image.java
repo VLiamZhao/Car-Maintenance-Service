@@ -26,23 +26,23 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-//    @JsonView({JsView.User.class})
+    @JsonView({JsView.User.class})
     private long id;
 
     @Column(name = "file_name")
-//    @JsonView({JsView.User.class})
+    @JsonView({JsView.User.class})
     private String fileName;
 
     @Column(name = "s3key")
-//    @JsonView({JsView.User.class})
+    @JsonView({JsView.User.class})
     private String s3key;
 
     @Column(name = "create_date")
-//    @JsonView({JsView.User.class})
+    @JsonView({JsView.User.class})
     private LocalDateTime createTime;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private Customer customer;
 

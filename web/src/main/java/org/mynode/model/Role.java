@@ -12,6 +12,10 @@ import java.util.List;
 public class Role {
     //Todo public static final String baseRole=""; - done
     public static final String baseRole = "User";
+
+    public Role() {
+    }
+
     @Id
     //@SequenceGenerator(name = "role_id_generator", sequenceName = "role_id_seq", allocationSize = 1)
     //@GeneratedValue(strategy = SEQUENCE, generator = "role_id_generator")
@@ -19,7 +23,6 @@ public class Role {
     private long id;
 
     @Column(name = "name")
-    @JsonView({JsView.Admin.class})
     private String name;
 
     @Column(name = "allowed_resource")

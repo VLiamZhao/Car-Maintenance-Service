@@ -3,14 +3,15 @@ package org.mynode.filter;
 
 
 import org.mynode.model.Customer;
-import org.mynode.serviceTest.CustomerService;
+import org.mynode.service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.jsonwebtoken.Claims;
 
-import org.mynode.serviceTest.JWTService;
+import org.mynode.service.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -34,6 +35,9 @@ public class SecurityFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+        if (customerService == null) {
+            SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, request.getServletContext());
+        }
         HttpServletRequest req = (HttpServletRequest)request;
         int statusCode = authorization(req);
         if (statusCode == HttpServletResponse.SC_ACCEPTED) filterChain.doFilter(request, response);

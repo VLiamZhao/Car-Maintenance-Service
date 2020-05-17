@@ -1,14 +1,17 @@
 package org.mynode.controller;
 
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.mynode.model.Customer;
 import org.mynode.model.Image;
-import org.mynode.serviceTest.*;
+import org.mynode.model.view.JsView;
+import org.mynode.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +22,7 @@ import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -66,10 +70,11 @@ public class FileController {
     }
 
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public List getImages(@RequestParam("id") long id){
+    @JsonView({JsView.User.class})
+    public List<Image> getImages(@RequestParam("id") long id){
         try{
             List<Image> images = imageService.getImagesByUserId(id);
-            return images.stream().map(i-> Arrays.asList(i.getFileName(),i.getS3key())).collect(Collectors.toList());
+            return images;
         } catch (Exception e){
             e.printStackTrace();
         }
