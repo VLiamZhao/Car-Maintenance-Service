@@ -21,7 +21,8 @@ public class HibernateUtil {
                 String[] modelPackages = {"org.mynode.model"};
                 String dbDriver = System.getProperty("database.driver");
                 String dbDialect = System.getProperty("database.dialect");
-                String dbUrl = System.getProperty("database.url");
+                String dbUrl = "jdbc:postgresql://" + System.getProperty("database.url") + ":"
+                        + System.getProperty("database.port") + "/" + System.getProperty("database.port");
                 String dbUser = System.getProperty("database.user");
                 String dbPassword = System.getProperty("database.password");
                 Configuration configuration = new Configuration();

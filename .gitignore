@@ -2,3 +2,5 @@
 /target
 ZCNodeProj.iml
 *.war
+/web/target
+/consumer/target
