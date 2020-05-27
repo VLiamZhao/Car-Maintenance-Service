@@ -31,6 +31,7 @@ public class Maintenance {
     private long id;
 
     @Column(name = "component")
+    @JsonView({JsView.User.class})
     private String component;
 
     @Column(name = "cost")

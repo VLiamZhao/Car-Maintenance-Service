@@ -3,9 +3,12 @@ package org.mynode.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.mynode.model.view.JsView;
 
 import javax.persistence.*;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,13 +53,17 @@ public class Customer {
 
     @Column(name = "secret_key")
     private String secretKey;
-
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JsonView({JsView.Admin.class})
+//TODO add jsview classes
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)
+    @JsonView({JsView.User.class})
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Car> cars = new ArrayList<>();
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JsonIgnore
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)
+//    fetch = FetchType.LAZY
+//    @JsonIgnore
+    @JsonView({JsView.User.class})
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Image> images = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -159,4 +166,5 @@ public class Customer {
     public List<Image> getImages() {
         return images;
     }
+
 }

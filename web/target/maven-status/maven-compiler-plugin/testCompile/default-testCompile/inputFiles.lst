@@ -1,0 +1,10 @@
+/home/can/IdeaProjects/ZCNodeProj/web/src/test/java/org/mynode/config/AWSTestConfig.java
+/home/can/IdeaProjects/ZCNodeProj/web/src/test/java/org/mynode/repository/HibernateMappingTest.java
+/home/can/IdeaProjects/ZCNodeProj/web/src/test/java/org/mynode/service/FileServiceTest.java
+/home/can/IdeaProjects/ZCNodeProj/web/src/test/java/org/mynode/repository/AuthControllerTest.java
+/home/can/IdeaProjects/ZCNodeProj/web/src/test/java/org/mynode/service/MessageServiceTest.java
+/home/can/IdeaProjects/ZCNodeProj/web/src/test/java/org/mynode/service/CarServiceTest.java
+/home/can/IdeaProjects/ZCNodeProj/web/src/test/java/org/mynode/repository/CarDaoTest.java
+/home/can/IdeaProjects/ZCNodeProj/web/src/test/java/org/mynode/repository/MaintenanceDaoTest.java
+/home/can/IdeaProjects/ZCNodeProj/web/src/test/java/org/mynode/repository/CustomerDaoTest.java
+/home/can/IdeaProjects/ZCNodeProj/web/src/test/java/org/mynode/service/JWTServiceTest.java

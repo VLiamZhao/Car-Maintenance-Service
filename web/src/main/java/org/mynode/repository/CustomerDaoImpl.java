@@ -16,7 +16,9 @@ public class CustomerDaoImpl implements CustomerDao {
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Override
     public Customer getCustomerEagerBy(long id) {
-        String hql = "From Customer as cu left join fetch cu.cars as cas WHERE cu.id = :cuId";
+//        String hql = "From Customer as cu left join fetch cu.cars cas LEFT JOIN FETCH cu.images img WHERE cu.id = :cuId";
+        String hql = "From Customer as cu left join fetch cu.cars as cas left join fetch cas.maintenances WHERE cu.id = :cuId";
+//        String hql = "From Customer as cu left join fetch cu.images as img WHERE cu.id = :cuId";
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
             Query<Customer> query = session.createQuery(hql);
             query.setParameter("cuId", id);
