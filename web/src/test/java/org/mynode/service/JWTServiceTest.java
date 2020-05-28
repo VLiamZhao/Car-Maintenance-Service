@@ -22,21 +22,21 @@ public class JWTServiceTest {
     JWTService jwtService;
     private Logger logger = LoggerFactory.getLogger(getClass());
     //passed
-    @Test
-    public void generateTokenTest(){
-        Customer customer = new Customer();
-        customer.setId(100L);
-        customer.setName("CZ");
-        String token = jwtService.generateToken(customer);
-    //        Assert.assertNotNull(token);
-    // TODO use regular expression - done
-    // String[] arr = token.split("\\.");
-
-        String patternString = "^[A-Za-z0-9_]+\\.[A-Za-z0-9_]+\\.?[A-Za-z0-9_]*$";
-        Pattern pattern = Pattern.compile(patternString);
-        Matcher matcher = pattern.matcher(token);
-        Assert.assertTrue(token, matcher.matches());
-    }
+//    @Test
+//    public void generateTokenTest(){
+//        Customer customer = new Customer();
+//        customer.setId(100L);
+//        customer.setName("CZ");
+//        String token = jwtService.generateToken(customer);
+//    //        Assert.assertNotNull(token);
+//    // TODO use regular expression - done
+//    // String[] arr = token.split("\\.");
+//
+//        String patternString = "^[A-Za-z0-9_]+\\.[A-Za-z0-9_]+\\.?[A-Za-z0-9_]*$";
+//        Pattern pattern = Pattern.compile(patternString);
+//        Matcher matcher = pattern.matcher(token);
+//        Assert.assertTrue(token, matcher.matches());
+//    }
     //passed
     @Test
     public void decodeTokenTest(){
