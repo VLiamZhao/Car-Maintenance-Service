@@ -1,27 +1,27 @@
-//package org.mynode.service;
-//
-//import io.jsonwebtoken.Claims;
-//import org.junit.Assert;
-//import org.junit.Test;
-//import org.junit.runner.RunWith;
-//import org.mynode.init.ApplicationBootstrap;
-//import org.mynode.model.Customer;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.test.context.junit4.SpringRunner;
-//
-//import java.util.regex.Matcher;
-//import java.util.regex.Pattern;
-//
-//@RunWith(SpringRunner.class)
-//@SpringBootTest(classes = ApplicationBootstrap.class)
-//public class JWTServiceTest {
-//    @Autowired
-//    JWTService jwtService;
-//    private Logger logger = LoggerFactory.getLogger(getClass());
-//    //passed
+package org.mynode.service;
+
+import io.jsonwebtoken.Claims;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mynode.init.ApplicationBootstrap;
+import org.mynode.model.Customer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = ApplicationBootstrap.class)
+public class JWTServiceTest {
+    @Autowired
+    JWTService jwtService;
+    private Logger logger = LoggerFactory.getLogger(getClass());
+    //passed
 //    @Test
 //    public void generateTokenTest(){
 //        Customer customer = new Customer();
@@ -37,15 +37,15 @@
 //        Matcher matcher = pattern.matcher(token);
 //        Assert.assertTrue(token, matcher.matches());
 //    }
-//    //passed
-//    @Test
-//    public void decodeTokenTest(){
-//        Customer customer = new Customer();
-//        customer.setId(100L);
-//        customer.setName("CZ");
-//        String token = jwtService.generateToken(customer);
-//        Claims c = jwtService.decodeJwtToken(token);
-//        String username = c.getSubject();
-//        Assert.assertEquals(customer.getName(), username);
-//    }
-//}
+    //passed
+    @Test
+    public void decodeTokenTest(){
+        Customer customer = new Customer();
+        customer.setId(100L);
+        customer.setName("CZ");
+        String token = jwtService.generateToken(customer);
+        Claims c = jwtService.decodeJwtToken(token);
+        String username = c.getSubject();
+        Assert.assertEquals(customer.getName(), username);
+    }
+}
