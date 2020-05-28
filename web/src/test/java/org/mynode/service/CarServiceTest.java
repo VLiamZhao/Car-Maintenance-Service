@@ -68,13 +68,13 @@
 //    @Test
 //    public void getCarsByCustomerTest() {
 //        List<Car> cars = carService.getCarsByCustomer(cu);
-//        Assert.assertTrue(cars.size() == 2);
+//        Assert.assertEquals(2, cars.size());
 //    }
 //
 //    @Test
 //    public void getCarByIdTest() {
 //        Car car = carService.getCarById(c1.getId());
-//        Assert.assertTrue(car.getType().equals("Toyota Corolla"));
+//        Assert.assertEquals("Toyota Corolla", car.getType());
 //    }
 //
 //    @Test
