@@ -1,10 +1,16 @@
 # Car Maintenance Project by Can Zhao
 ## Description 
-A Car Maintenance Service web application implemented by Spring MVC and Web Flow with functionalities including service listing, searching, and ordering. Simplified and streamlined database operations with Hibernate. Implemented JWT Stateless authentication security workflow.
+A Spring Boot and Hibernate based Car Maintenance Service Web Application
+1. Built a car maintenance web service by using Spring Boot and Web Flow with functionalities including service listing, searching, and ordering
+2. Implemented JWT Stateless Authentication security workflow
+3. Used Docker PostgreSQL image and Tomcat image to ensure the isolation of each module
+4. Implemented a consumer microservice to consume messages by using AWS SQS
+5. Deployed the application on the Cloud by using AWS ECR web service
+6. Tested and Deployed the application through CI/CD pipeline.
 ## Assumption
-Users are provided personal informations and car maintenance service information based on the authorities.
+1. Users can check or edit personal informations and car maintenance service information based on the authorities.
 2. The information is created before searching.
-3. The relation between user and their authorities is "Many to Many".
+3. Users can add maintenance services for their cars.
 ## Approach
 * Project Business Rules:
 1. Object: Car, Maintenance, Customer, Role
@@ -75,8 +81,8 @@ mvn compile test -Dspring.profiles.active=${unit} -Daws.region=${region} -Ddb_ur
 mvn clean compile package -DskipTests=true
 ```
 ## API guideline and Reference DEMO
-- You need to sign up for authority to get access.<br />
-Make a get request in this address to create a new account.<br />
+- You need to sign up for The authority to get access.<br />
+Send a GET request in this address to create a new account.<br />
      
 ```
 GET - http://localhost:8080/auth/registration
@@ -90,7 +96,7 @@ Put the request body.
 }
 
 ``` 
-Then you can get the response like:
+The response would be like:
 ```
 {
     "Email": "test@gmail.com",
@@ -102,24 +108,24 @@ Then you can get the response like:
 DEMO screen shoot:
 ![Image of signUp](https://github.com/VLiamZhao/Car-Maintenance-Service/blob/master/web/src/main/resources/car-test.png?raw=true)
 - You need to login.<br />
-Make a post request in this address.
+Send a post request to this url.
 ```
 POST - http://localhost:8080/auth
 ```
-Put the request body.（ You can chose login with username or email)
+Edit the request body.（ You can chose login with username or email)
 ```
 {
     "email": "test@gmail.com",
     "password": "123"
 }
 ``` 
-Then you can get the response like:
+Then the response will be like:
 ```
 {
     "token": "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxNSIsInN1YiI6IlRlc3QiLCJpYXQiOjE1OTI2NDM4NzAsImlzcyI6Im9yZy5teW5vZGUiLCJleHAiOjE1OTI3MzAyNzAsImFsbG93ZWRSZXNvdXJjZSI6Ii9jYXIsIC9tYWludGVuYW5jZSIsImFsbG93ZWRSZWFkUmVzb3VyY2VzIjoiL2NhciwgL21haW50ZW5hbmNlIiwiYWxsb3dlZENyZWF0ZVJlc291cmNlcyI6IiIsImFsbG93ZWRVcGRhdGVSZXNvdXJjZXMiOiIiLCJhbGxvd2VkRGVsZXRlUmVzb3VyY2VzIjoiIn0.Ky6EX7h4gz9yw1DdJhIqijFKlyACzJCJvhgcfkhvjYU"    
 }
 ```
-This token is need for the future access other api. So you don't need to login to the every API.
+This token is needed for the future access to other api. So you don't have to login to the every API.
 # CI/CD
 
 You should have completed the following stages before you work with DevOps engineer.
@@ -151,7 +157,7 @@ Make sure the source code in the github is the latest(runnable) version.
     mvn clean compile flyway:migrate -Ddatabase.url=jdbc:postgresql://${database_url}:5432/${database_name} 
     -Ddatabase.user=${user_name} -Ddatabase.password=${password}
     
-Notice: Cause we are currently run in the container. Thus, the database connection is no longer localhost:5432.
+Notice: We are currently running in the container. Thus, the database connection is no longer localhost:5432.
 You should inspect `postgreSQL` server container to find the IP address. Find the internal IP address of the container by using:
     
     docker inspect ${container_id} | grep "IPAddress"
