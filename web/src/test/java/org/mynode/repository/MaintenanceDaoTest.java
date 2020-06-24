@@ -9,12 +9,14 @@ import org.mynode.init.ApplicationBootstrap;
 import org.mynode.model.Car;
 import org.mynode.model.Customer;
 import org.mynode.model.Maintenance;
+import org.mynode.model.Role;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -26,6 +28,8 @@ public class MaintenanceDaoTest {
     CustomerDao customerDao;
     @Autowired
     MaintenanceDao maintenanceDao;
+    @Autowired
+    RoleDao roleDao;
     private Logger logger = LoggerFactory.getLogger(getClass());
     Car c1, c2;
     Customer cu;
@@ -37,6 +41,10 @@ public class MaintenanceDaoTest {
         c1 = new Car("Toyota Corolla");
         c2 = new Car("lexus E200");
         cu = new Customer("Stephanie");
+        Role role = roleDao.getRoleById(1L);
+        List<Role> roles = new ArrayList<>();
+        roles.add(role);
+        cu.setRoleList(roles);
         m1 = new Maintenance("left front-door");
         m2 = new Maintenance("gear");
         c1.setCustomer(cu);
