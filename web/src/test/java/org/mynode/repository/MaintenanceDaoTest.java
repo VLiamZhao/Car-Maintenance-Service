@@ -76,7 +76,7 @@ public class MaintenanceDaoTest {
     @Test
     public void getMaintenanceOrdersTest() {
         logger.debug("Test of getMaintenanceOrders will start...");
-        int expectedCount = 4; //2 records was already in the table.
+        int expectedCount = 4;
         List<Maintenance> maintenanceOrders = maintenanceDao.getMaintenanceOrders();
         Assert.assertEquals(expectedCount, maintenanceOrders.size());
     }
